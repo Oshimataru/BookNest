@@ -42,7 +42,9 @@ public class Book {
     private String location;
 
     private String imageUrl;
-
+    private Integer quantity = 1;
+    public Integer getQuantity() { return quantity; }
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public enum BookType {

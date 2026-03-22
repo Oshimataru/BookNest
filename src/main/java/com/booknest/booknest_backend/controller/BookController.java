@@ -23,6 +23,7 @@ public class BookController {
     public ResponseEntity<?> addBook(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestParam("title") String title,
+            @RequestParam("quantity") Integer quantity,
             @RequestParam("author") String author,
             @RequestParam("genre") String genre,
             @RequestParam("description") String description,
@@ -36,7 +37,7 @@ public class BookController {
             Book book = bookService.addBook(
                     userDetails.getUsername(), title, author,
                     genre, description, price, rentPrice,
-                    condition, type, location, image);
+                    condition, type, location, quantity, image);;
             return ResponseEntity.ok(book);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

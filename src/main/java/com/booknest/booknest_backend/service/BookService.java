@@ -23,6 +23,9 @@ public class BookService {
     private UserRepository userRepository;
 
     @Autowired
+    private GamificationService gamificationService;
+
+    @Autowired
     private Cloudinary cloudinary;
 
     // Upload image to Cloudinary
@@ -38,7 +41,7 @@ public class BookService {
     public Book addBook(String email, String title, String author,
                         String genre, String description, Double price,
                         Double rentPrice, String condition, String type,
-                        String location, MultipartFile image) throws IOException {
+                        String location, Integer quantity, MultipartFile image) throws IOException {
 
         User seller = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
@@ -59,7 +62,9 @@ public class BookService {
             String imageUrl = uploadImage(image);
             book.setImageUrl(imageUrl);
         }
-
+        book.setQuantity(quantity);
+        // Award points for listing a book
+        gamificationService.addPoints(email, 5, "Listed a book!");
         return bookRepository.save(book);
     }
 
