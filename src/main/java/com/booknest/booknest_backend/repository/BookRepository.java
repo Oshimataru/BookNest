@@ -12,7 +12,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     // Get all books by a specific seller
     List<Book> findBySellerId(Long sellerId);
-
+    Book findTopByOrderByIdDesc();
     // Get all books by type (SELL, RENT, EXCHANGE)
     List<Book> findByType(Book.BookType type);
 

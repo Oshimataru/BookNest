@@ -1,1 +1,1 @@
-UPDATE users SET role = 'ADMIN' WHERE email = 'oshimataru@gmail.com';
+UPDATE users SET role = 'ADMIN' WHERE email = 'us@gmail.com';
